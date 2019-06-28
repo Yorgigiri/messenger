@@ -1,13 +1,12 @@
 import React from "react";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
 import axios from "axios";
 import "./UserDetails.scss";
 
 class UsersDetails extends React.Component {
   state = {
     array: {},
-    userAbout: "test",
-    // userAge: String,
-    // userCity: String,
     users_info: []
   };
 
@@ -17,23 +16,6 @@ class UsersDetails extends React.Component {
 
       this.setState({ users_info });
     });
-  }
-
-  componentDidUpdate() {
-    // let userId = this.props.id;
-    // let array = this.state.users_info[userId];
-
-    console.log(this.props.userInfo);
-
-    // if (array) {
-    //   // console.log(array);
-    //   if (userId !== this.props.id) {
-    //     console.log(array);
-    //   } else {
-    //     // this.setState({ array });
-    //     // console.log(array);
-    //   }
-    // }
   }
 
   getDetailInfo() {
@@ -53,14 +35,17 @@ class UsersDetails extends React.Component {
         <div className="user-details__age">{this.props.userInfo.age}</div>
         <div className="user-details__label">Город:</div>
         <div className="user-details__city">{this.props.userInfo.city}</div>
-        <button>Отправить сообщение</button>
-        {/* {this.state.users_info.map((info, index) => (
-          <div className="users-list__element" key={index}>
-            <div>{info.about}</div>
-            <div>{info.age}</div>
-            <div>{info.city}</div>
-          </div>
-        ))} */}
+        <TextField
+          id="filled-full-width"
+          style={{ marginBottom: 16 }}
+          placeholder="Введите сообщение"
+          fullWidth
+          margin="normal"
+          variant="filled"
+        />
+        <Button variant="contained" color="primary">
+          Отправить сообщение
+        </Button>
       </div>
     );
   }

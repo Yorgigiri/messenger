@@ -1,0 +1,31 @@
+// .option-enter {
+//   transform: translate(100%, 0);
+// }
+// .option-enter-active {
+//   transform: translate(0, 0);
+//   transition: transform 3s linear;
+// }
+
+// .option-exit {
+//   transform: translate(0, 0);
+// }
+
+// .option-exit-active {
+//   transform: translate(100%, 0);
+//   transition: transform 3s linear;
+// }
+
+.option-enter {
+  opacity: 0;
+}
+.option-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+.option-exit {
+  opacity: 1;
+}
+.option-exit-active {
+  opacity: 0;
+  transition: opacity 500ms ease-in;
+}
