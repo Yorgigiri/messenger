@@ -2,6 +2,15 @@
   padding: 8px;
   &__label {
     font-size: 21px;
+    margin-bottom: 8px;
     font-weight: 700;
+  }
+  &__name {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+  &__box {
+    margin-bottom: 20px;
   }
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import Avatar from "@material-ui/core/Avatar";
 import "./Users.scss";
 
 class Users extends React.Component {
@@ -9,7 +10,6 @@ class Users extends React.Component {
   };
 
   componentDidMount() {
-    console.log(this.props);
     axios.get("./data/users.json").then(res => {
       const users = res.data;
 
@@ -31,13 +31,17 @@ class Users extends React.Component {
               className="users-list__element"
               key={index}
               onClick={() => {
+                this.props.hideForm();
                 this.props.showUserDetails();
-                this.props.getUserInfo(this.state.users_info[index]);
+                this.props.getUserInfo(user, this.state.users_info[index]);
               }}
             >
-              <div className="users-list__element-avatar"></div>
-              {this.state.name}
-              {user.name} {user.surname}
+              <Avatar size="large" className="users-list__element-avatar">
+                {`${user.name.charAt(0)} ${user.surname.charAt(0)}`}
+              </Avatar>
+              <span className="users-list__element-username">
+                {user.name} {user.surname}
+              </span>
             </div>
           ))}
         </div>

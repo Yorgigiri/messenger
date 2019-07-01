@@ -5,16 +5,10 @@
     &__element {
       display: flex;
       align-items: center;
-      padding: 4px;
+      padding: 8px 4px;
       cursor: pointer;
       &-avatar {
-        width: 30px;
-        height: 30px;
-        background: #b0b0b0;
         margin-right: 5px;
-        border: 2px solid #000000;
-        border-radius: 100%;
-        overflow: hidden;
       }
       &:hover {
         color: blue;

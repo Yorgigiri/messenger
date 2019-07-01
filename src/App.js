@@ -3,6 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import Users from "./components/Users/Users";
 import UserDetails from "./components/UserDetails/UserDetails";
+import UserComments from "./components/UserComments/UserComments";
 
 class App extends React.Component {
   state = {
@@ -13,10 +14,20 @@ class App extends React.Component {
     isDetailsVisible: false
   };
 
-  componentDidMount() {}
+  getUserInfo = (name, info) => {
+    this.setState({ userName: name, userInfo: info });
+  };
 
-  getUserInfo = info => {
-    this.setState({ userInfo: info });
+  showFormInput = () => {
+    this.setState({
+      canSubmit: true
+    });
+  };
+
+  hideForm = () => {
+    this.setState({
+      canSubmit: false
+    });
   };
 
   showUserDetails = () => {
@@ -28,13 +39,14 @@ class App extends React.Component {
   };
 
   render() {
-    const { isDetailsVisible } = this.state;
+    const { isDetailsVisible, canSubmit } = this.state;
 
     return (
       <div className="App">
         <Grid container spacing={0} alignItems="stretch">
           <Grid item xs={this.state.usersColWidth}>
             <Users
+              hideForm={this.hideForm}
               getUserInfo={this.getUserInfo}
               showUserDetails={this.showUserDetails}
             />
@@ -44,7 +56,13 @@ class App extends React.Component {
             {isDetailsVisible && (
               <CSSTransition classNames="option" timeout={500}>
                 <Grid item xs={this.state.detailsColWidth}>
-                  <UserDetails userInfo={this.state.userInfo} />
+                  <UserDetails
+                    userName={this.state.userName}
+                    userInfo={this.state.userInfo}
+                    showFormInput={this.showFormInput}
+                    canSubmit={this.state.canSubmit}
+                  />
+                  {canSubmit && <UserComments userName={this.state.userName} />}
                 </Grid>
               </CSSTransition>
             )}
