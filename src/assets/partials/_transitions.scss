@@ -1,31 +1,19 @@
-// .option-enter {
-//   transform: translate(100%, 0);
-// }
-// .option-enter-active {
-//   transform: translate(0, 0);
-//   transition: transform 3s linear;
-// }
-
-// .option-exit {
-//   transform: translate(0, 0);
-// }
-
-// .option-exit-active {
-//   transform: translate(100%, 0);
-//   transition: transform 3s linear;
-// }
-
 .option-enter {
+  width: 0;
   opacity: 0;
 }
 .option-enter-active {
+  width: 100%;
   opacity: 1;
-  transition: opacity 500ms ease-in;
+  transition: opacity 500ms ease-in, width 500ms ease-in;
 }
 .option-exit {
   opacity: 1;
+  width: 100%;
 }
 .option-exit-active {
+  width: 0;
   opacity: 0;
-  transition: opacity 500ms ease-in;
+  transition: opacity 500ms ease-in, width 500ms ease-in;
+  transition: flex-basis 500ms ease-in;
 }

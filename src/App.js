@@ -11,7 +11,8 @@ class App extends React.Component {
     detailsColWidth: 6,
     userInfo: [],
     infoArray: [],
-    isDetailsVisible: false
+    isDetailsVisible: false,
+    onlyAvatars: false
   };
 
   getUserInfo = (name, info) => {
@@ -20,13 +21,17 @@ class App extends React.Component {
 
   showFormInput = () => {
     this.setState({
-      canSubmit: true
+      canSubmit: true,
+      onlyAvatars: true,
+      usersColWidth: "auto",
+      detailsColWidth: 12
     });
   };
 
   hideForm = () => {
     this.setState({
-      canSubmit: false
+      canSubmit: false,
+      onlyAvatars: false
     });
   };
 
@@ -39,20 +44,29 @@ class App extends React.Component {
   };
 
   render() {
-    const { isDetailsVisible, canSubmit } = this.state;
+    const { isDetailsVisible, canSubmit, onlyAvatars } = this.state;
+    let style;
 
+    if (onlyAvatars) {
+      style = {
+        minWidth: "60px",
+        maxWidth: "60px",
+        flexBasis: "60px"
+      };
+    }
     return (
       <div className="App">
-        <Grid container spacing={0} alignItems="stretch">
-          <Grid item xs={this.state.usersColWidth}>
-            <Users
-              hideForm={this.hideForm}
-              getUserInfo={this.getUserInfo}
-              showUserDetails={this.showUserDetails}
-            />
-          </Grid>
-
+        <Grid container spacing={0} wrap="nowrap" alignItems="stretch">
           <TransitionGroup component={null}>
+            <Grid style={style} item xs={this.state.usersColWidth}>
+              <Users
+                hideForm={this.hideForm}
+                getUserInfo={this.getUserInfo}
+                showUserDetails={this.showUserDetails}
+                onlyAvatars={this.state.onlyAvatars}
+              />
+            </Grid>
+
             {isDetailsVisible && (
               <CSSTransition classNames="option" timeout={500}>
                 <Grid item xs={this.state.detailsColWidth}>

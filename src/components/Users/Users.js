@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import Paper from "@material-ui/core/Paper";
 import Avatar from "@material-ui/core/Avatar";
 import "./Users.scss";
 
@@ -23,6 +24,10 @@ class Users extends React.Component {
   }
 
   render() {
+    const userPaperElement = {
+      overflow: "hidden"
+    };
+
     return (
       <div className="users">
         <div className="users-list">
@@ -36,12 +41,17 @@ class Users extends React.Component {
                 this.props.getUserInfo(user, this.state.users_info[index]);
               }}
             >
-              <Avatar size="large" className="users-list__element-avatar">
-                {`${user.name.charAt(0)} ${user.surname.charAt(0)}`}
-              </Avatar>
-              <span className="users-list__element-username">
-                {user.name} {user.surname}
-              </span>
+              {this.props.onlyAvatars ? (
+                <Avatar size="large">
+                  {`${user.name.charAt(0)} ${user.surname.charAt(0)}`}
+                </Avatar>
+              ) : (
+                <Paper style={userPaperElement}>
+                  <div className="users-list__element-username">
+                    {user.name} {user.surname}
+                  </div>
+                </Paper>
+              )}
             </div>
           ))}
         </div>

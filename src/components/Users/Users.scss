@@ -1,18 +1,20 @@
+@import "./../../assets/partials/variables";
+
 .users {
   padding: 8px;
-  background: #e7e7e7;
   &-list {
     &__element {
-      display: flex;
-      align-items: center;
-      padding: 8px 4px;
       cursor: pointer;
-      &-avatar {
-        margin-right: 5px;
-      }
-      &:hover {
-        color: blue;
-        background: #b0b0b0;
+      margin-bottom: 8px;
+      &-username {
+        display: flex;
+        align-items: center;
+        padding: 8px 4px;
+        color: $color_dark;
+        transition: background-color 500ms ease-in;
+        &:hover {
+          background: $color_gray2;
+        }
       }
     }
   }

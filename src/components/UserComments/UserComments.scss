@@ -1,5 +1,8 @@
 .user-comments {
   padding: 8px;
+  &__inner {
+    padding: 8px;
+  }
   &-list {
     &__element {
       margin-bottom: 8px;

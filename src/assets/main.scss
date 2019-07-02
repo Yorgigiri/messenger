@@ -17,5 +17,7 @@ code {
 }
 
 .App {
+  background: $color_gray;
+  min-height: 100vh;
   overflow-x: hidden;
 }

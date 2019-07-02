@@ -1,5 +1,8 @@
 .user-details {
   padding: 8px;
+  &__inner {
+    padding: 8px;
+  }
   &__label {
     font-size: 21px;
     margin-bottom: 8px;

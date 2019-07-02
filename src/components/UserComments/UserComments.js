@@ -1,5 +1,6 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
+import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import "./UserComments.scss";
 
@@ -94,39 +95,43 @@ class UserComments extends React.Component {
 
     return (
       <div className="user-comments">
-        <div className="user-comments-list">
-          {commentsList.map((comment, index) => (
-            <div key={index} className="user-comments-list__element">
-              {comment}
+        <Paper>
+          <div className="user-comments__inner">
+            <div className="user-comments-list">
+              {commentsList.map((comment, index) => (
+                <div key={index} className="user-comments-list__element">
+                  {comment}
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
 
-        <div className="user-comments-form">
-          <form id="addCommentForm" onSubmit={this.addComment}>
-            <TextField
-              id="filled-full-width"
-              style={{ marginBottom: 16 }}
-              label="Введите сообщение"
-              fullWidth
-              margin="normal"
-              variant="filled"
-              value={this.state.value}
-              onChange={this.handleChange}
-            />
+            <div className="user-comments-form">
+              <form id="addCommentForm" onSubmit={this.addComment}>
+                <TextField
+                  id="filled-full-width"
+                  style={{ marginBottom: 16 }}
+                  label="Введите сообщение"
+                  fullWidth
+                  margin="normal"
+                  variant="filled"
+                  value={this.state.value}
+                  onChange={this.handleChange}
+                />
 
-            <Button
-              type="submit"
-              form="addCommentForm"
-              variant="contained"
-              size="large"
-              color="primary"
-              onClick={this.addComment}
-            >
-              Отправить сообщение
-            </Button>
-          </form>
-        </div>
+                <Button
+                  type="submit"
+                  form="addCommentForm"
+                  variant="contained"
+                  size="large"
+                  color="primary"
+                  onClick={this.addComment}
+                >
+                  Отправить сообщение
+                </Button>
+              </form>
+            </div>
+          </div>
+        </Paper>
       </div>
     );
   }
