@@ -11,13 +11,78 @@ body {
   color: $color_dark;
 }
 
+h1 {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
 .App {
-  background: $color_gray;
+  background: $color_blue;
   min-height: 100vh;
   overflow-x: hidden;
+
+  &_isDetailsVisible {
+    & .custom {
+      &-grid {
+        &__column {
+          width: 50%;
+          &_right {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+
+  &_canSubmit {
+    & .users-list {
+      padding: 8px 0;
+      &__element {
+        display: flex;
+        padding-left: 9px;
+        padding-bottom: 8px;
+      }
+    }
+    & .custom {
+      &-grid {
+        &__column {
+          &_left {
+            width: 80px;
+          }
+          &_right {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+.custom {
+  // custom-grid
+  &-grid {
+    &__row {
+      display: flex;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+      justify-content: space-between;
+    }
+    &__column {
+      transition: width 0.2s linear;
+      &_right {
+        width: 0;
+      }
+      &_left {
+        width: 100%;
+      }
+    }
+  }
 }

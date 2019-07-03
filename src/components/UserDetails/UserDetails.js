@@ -43,7 +43,7 @@ class UsersDetails extends React.Component {
                   variant="contained"
                   size="large"
                   color="primary"
-                  onClick={this.props.showFormInput}
+                  onClick={this.props.showForm}
                 >
                   Отправить сообщение
                 </Button>

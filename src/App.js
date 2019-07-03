@@ -1,6 +1,4 @@
 import React from "react";
-import Grid from "@material-ui/core/Grid";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
 import Users from "./components/Users/Users";
 import UserDetails from "./components/UserDetails/UserDetails";
 import UserComments from "./components/UserComments/UserComments";
@@ -19,12 +17,11 @@ class App extends React.Component {
     this.setState({ userName: name, userInfo: info });
   };
 
-  showFormInput = () => {
+  showForm = () => {
     this.setState({
       canSubmit: true,
       onlyAvatars: true,
-      usersColWidth: "auto",
-      detailsColWidth: 12
+      isDetailsVisible: false
     });
   };
 
@@ -37,51 +34,44 @@ class App extends React.Component {
 
   showUserDetails = () => {
     this.setState({
-      isDetailsVisible: true,
-      usersColWidth: 6,
-      detailsColWidth: 6
+      isDetailsVisible: true
     });
   };
 
   render() {
-    const { isDetailsVisible, canSubmit, onlyAvatars } = this.state;
-    let style;
+    const { isDetailsVisible, canSubmit } = this.state;
+    let changeableClassName = "App";
 
-    if (onlyAvatars) {
-      style = {
-        minWidth: "60px",
-        maxWidth: "60px",
-        flexBasis: "60px"
-      };
+    if (isDetailsVisible) {
+      changeableClassName += " App_isDetailsVisible";
+    } else if (canSubmit) {
+      changeableClassName += " App_canSubmit";
     }
     return (
-      <div className="App">
-        <Grid container spacing={0} wrap="nowrap" alignItems="stretch">
-          <TransitionGroup component={null}>
-            <Grid style={style} item xs={this.state.usersColWidth}>
-              <Users
-                hideForm={this.hideForm}
-                getUserInfo={this.getUserInfo}
-                showUserDetails={this.showUserDetails}
-                onlyAvatars={this.state.onlyAvatars}
-              />
-            </Grid>
+      <div className={changeableClassName}>
+        <h1>Messenger</h1>
+        <div className="custom-grid__row">
+          <div className="custom-grid__column custom-grid__column_left">
+            <Users
+              hideForm={this.hideForm}
+              getUserInfo={this.getUserInfo}
+              showUserDetails={this.showUserDetails}
+              onlyAvatars={this.state.onlyAvatars}
+            />
+          </div>
 
+          <div className="custom-grid__column custom-grid__column_right">
             {isDetailsVisible && (
-              <CSSTransition classNames="option" timeout={500}>
-                <Grid item xs={this.state.detailsColWidth}>
-                  <UserDetails
-                    userName={this.state.userName}
-                    userInfo={this.state.userInfo}
-                    showFormInput={this.showFormInput}
-                    canSubmit={this.state.canSubmit}
-                  />
-                  {canSubmit && <UserComments userName={this.state.userName} />}
-                </Grid>
-              </CSSTransition>
+              <UserDetails
+                userName={this.state.userName}
+                userInfo={this.state.userInfo}
+                showForm={this.showForm}
+                canSubmit={this.state.canSubmit}
+              />
             )}
-          </TransitionGroup>
-        </Grid>
+            {canSubmit && <UserComments userName={this.state.userName} />}
+          </div>
+        </div>
       </div>
     );
   }

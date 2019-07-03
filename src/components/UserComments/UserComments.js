@@ -97,6 +97,9 @@ class UserComments extends React.Component {
       <div className="user-comments">
         <Paper>
           <div className="user-comments__inner">
+            <div className="user-comments__title">
+              Сообщение для {this.fullName}
+            </div>
             <div className="user-comments-list">
               {commentsList.map((comment, index) => (
                 <div key={index} className="user-comments-list__element">

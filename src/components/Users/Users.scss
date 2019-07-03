@@ -5,15 +5,25 @@
   &-list {
     &__element {
       cursor: pointer;
-      margin-bottom: 8px;
+      &-avatar {
+        transition: opacity 0.3s linear;
+      }
+      &_active & {
+        &-username {
+          background: $color_blue2;
+        }
+        &-avatar {
+          background: $color_blue2;
+        }
+      }
       &-username {
         display: flex;
         align-items: center;
-        padding: 8px 4px;
+        padding: 8px 9px;
         color: $color_dark;
         transition: background-color 500ms ease-in;
         &:hover {
-          background: $color_gray2;
+          background: $color_blue2;
         }
       }
     }

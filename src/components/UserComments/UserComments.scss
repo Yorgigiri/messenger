@@ -1,11 +1,22 @@
+@import "./../../assets/partials/variables";
+
 .user-comments {
   padding: 8px;
   &__inner {
     padding: 8px;
   }
+  &__title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
   &-list {
     &__element {
-      margin-bottom: 8px;
+      padding: 8px;
+      border-bottom: 1px solid $color_gray;
+      &:last-child {
+        border-bottom: none;
+      }
     }
   }
 }
